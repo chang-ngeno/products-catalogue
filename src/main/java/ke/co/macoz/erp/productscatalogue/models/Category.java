@@ -1,7 +1,5 @@
 package ke.co.macoz.erp.productscatalogue.models;
 
-import java.util.UUID;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "mst_categories")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "category_id", updatable = false, unique = true, nullable = false)
-	private UUID categoryId;
+	@Type(type="uuid-char")
+	@Column(name="category_id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+	private String categoryId;
 
 	@Column(name = "category_name", unique = true, nullable = false, length = 50, insertable = true, updatable = true)
 	private String categoryName;
@@ -28,11 +29,11 @@ public class Category {
 	@JoinColumn(name = "parent_category_id")
 	private Category parentCategory;
 
-	public UUID getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(UUID categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -54,7 +55,7 @@ public class Category {
 
 	public Category() { super(); }
 
-	public Category(UUID categoryId, String categoryName, Category parentCategory) {
+	public Category(String categoryId, String categoryName, Category parentCategory) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;

@@ -1,7 +1,5 @@
 package ke.co.macoz.erp.productscatalogue.models;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "mst_discount")
 public class Discount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "discount_id", nullable = false, unique = true, updatable = false)
-	private UUID discountId;
+	@Type(type="uuid-char")
+	@Column(name="discount_id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
+	private String discountId;
 
 	@Column(name = "name", unique = true, nullable = false, length = 50, insertable = true, updatable = true)
 	private String discountName;
@@ -26,11 +27,11 @@ public class Discount {
 	@Column(name = "amount_rate_type", nullable = false)
 	private String amountRateType;
 
-	public UUID getDiscountId() {
+	public String getDiscountId() {
 		return discountId;
 	}
 
-	public void setDiscountId(UUID discountId) {
+	public void setDiscountId(String discountId) {
 		this.discountId = discountId;
 	}
 
