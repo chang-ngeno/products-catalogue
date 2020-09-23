@@ -7,5 +7,8 @@ import ke.co.macoz.erp.productscatalogue.models.Category;
 
 @RepositoryRestResource(path = "category", collectionResourceRel = "category")
 public interface CategoryDataRestRepository extends PagingAndSortingRepository<Category, String>{
-
+	
+	//List<Category> findByParentCategory(Category parentCategory);
+	
+	
 }
