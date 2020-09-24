@@ -11,29 +11,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Entity
 @Table(name = "mst_categories")
 public class Category {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type="uuid-char")
-	@Column(name="category_id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-	private String categoryId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "category_id", insertable = false, updatable = false, nullable = false)
+	private Long categoryId;
 
 	@Column(name = "category_name", unique = true, nullable = false, length = 50, insertable = true, updatable = true)
 	private String categoryName;
 
-	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "parent_category_id")
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "parent_category_id",referencedColumnName = "category_id")
+	@RestResource(path = "parentCategory", rel="category")
 	private Category parentCategory;
 
-	public String getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -53,9 +53,11 @@ public class Category {
 		this.parentCategory = parentCategory;
 	}
 
-	public Category() { super(); }
+	public Category() {
+		super();
+	}
 
-	public Category(String categoryId, String categoryName, Category parentCategory) {
+	public Category(Long categoryId, String categoryName, Category parentCategory) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
@@ -74,7 +76,5 @@ public class Category {
 		builder.append("\"]");
 		return builder.toString();
 	}
-	
-	
 
 }

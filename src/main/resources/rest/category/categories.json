@@ -1,0 +1,20 @@
+{ "categories":[
+    
+    {
+        "categoryName": "Test Category 1"
+	},
+    {
+        "categoryName": "Test Category 2"
+	},
+    {
+        "categoryName": "Test Category 3"
+	},
+    {
+        "categoryName": "Test Category 4"
+	},
+    {
+        "categoryName": "Test Category 5"
+	}
+    ]
+}
+	
