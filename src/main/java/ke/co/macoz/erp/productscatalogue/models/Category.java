@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.rest.core.annotation.RestResource;
-
 @Entity
 @Table(name = "mst_categories")
 public class Category {
@@ -25,8 +23,7 @@ public class Category {
 	private String categoryName;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "parent_category_id",referencedColumnName = "category_id")
-	@RestResource(path = "parentCategory", rel="category")
+	@JoinColumn(name = "parent_category_id", referencedColumnName = "category_id",table = "mst_categories")
 	private Category parentCategory;
 
 	public Long getCategoryId() {
