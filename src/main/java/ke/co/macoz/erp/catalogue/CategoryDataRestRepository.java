@@ -1,3 +1,4 @@
+package ke.co.macoz.erp.catalogue;
 /*
  * package ke.co.macoz.erp.productscatalogue;
  * 

@@ -1,4 +1,4 @@
-package ke.co.macoz.erp.productscatalogue.models;
+package ke.co.macoz.erp.catalogue.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,16 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
+import ke.co.macoz.erp.catalogue.models.utils.ActiveDeleted;
 
 @Entity
 @Table(name = "mst_discount")
-public class Discount {
+public class Discount extends ActiveDeleted {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type="uuid-char")
-	@Column(name="discount_id", columnDefinition = "VARCHAR(255)", insertable = false, updatable = false, nullable = false)
-	private String discountId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "discount_id", insertable = false, updatable = false, nullable = false)
+	private Long discountId;
 
 	@Column(name = "name", unique = true, nullable = false, length = 50, insertable = true, updatable = true)
 	private String discountName;
@@ -27,11 +26,11 @@ public class Discount {
 	@Column(name = "amount_rate_type", nullable = false)
 	private String amountRateType;
 
-	public String getDiscountId() {
+	public Long getDiscountId() {
 		return discountId;
 	}
 
-	public void setDiscountId(String discountId) {
+	public void setDiscountId(Long discountId) {
 		this.discountId = discountId;
 	}
 

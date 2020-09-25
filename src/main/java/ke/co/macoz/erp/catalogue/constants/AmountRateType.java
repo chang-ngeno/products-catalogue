@@ -1,4 +1,4 @@
-package ke.co.macoz.erp.productscatalogue.constants;
+package ke.co.macoz.erp.catalogue.constants;
 
 public enum AmountRateType {
 	AMOUNT, //@AMOUNT used for cases where an amount is used to give a discount

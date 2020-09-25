@@ -1,4 +1,4 @@
-package ke.co.macoz.erp.productscatalogue;
+package ke.co.macoz.erp.catalogue;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

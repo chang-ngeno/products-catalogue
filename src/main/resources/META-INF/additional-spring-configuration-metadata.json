@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.jpa.hibernate.naming-strategy",
+    "type": "java.lang.String",
+    "description": "The hibernate jpa naming-strategy'"
+  },
+  {
+    "name": "spring.datasource.validationQuery",
+    "type": "java.lang.String",
+    "description": "Data source validation query'"
+  },
+  {
+    "name": "spring.datasource.testWhileIdle",
+    "type": "java.lang.Boolean",
+    "description": "test While datasource is Idle'"
+  }
+]}

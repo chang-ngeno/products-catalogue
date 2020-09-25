@@ -1,9 +1,10 @@
-package ke.co.macoz.erp.productscatalogue.models;
+package ke.co.macoz.erp.catalogue.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,9 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ke.co.macoz.erp.catalogue.models.utils.ActiveDeleted;
+
 @Entity
 @Table(name = "mst_categories")
-public class Category {
+public class Category extends ActiveDeleted {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "category_id", insertable = false, updatable = false, nullable = false)
@@ -23,7 +26,8 @@ public class Category {
 	private String categoryName;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "parent_category_id", referencedColumnName = "category_id",table = "mst_categories")
+	@JoinColumn(name = "parent_category_id", referencedColumnName = "category_id",
+			table = "mst_categories", foreignKey = @ForeignKey(name = "FK_parent_category"))
 	private Category parentCategory;
 
 	public Long getCategoryId() {
